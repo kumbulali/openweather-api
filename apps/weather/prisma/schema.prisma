@@ -9,7 +9,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Openweatherquery {
+model Weatherquery {
   id        Int      @id @default(autoincrement())
   path      String
   method    String

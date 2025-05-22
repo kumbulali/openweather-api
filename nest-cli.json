@@ -1,11 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/openweather/src",
+  "sourceRoot": "apps/weather/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/openweather/tsconfig.app.json"
+    "tsConfigPath": "apps/weather/tsconfig.app.json"
   },
   "projects": {
     "common": {
@@ -26,16 +26,16 @@
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
     },
-    "openweather": {
+    "weather": {
       "type": "application",
-      "root": "apps/openweather",
+      "root": "apps/weather",
       "entryFile": "main",
-      "sourceRoot": "apps/openweather/src",
+      "sourceRoot": "apps/weather/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/openweather/tsconfig.app.json"
+        "tsConfigPath": "apps/weather/tsconfig.app.json"
       }
     }
   },
   "monorepo": true,
-  "root": "apps/openweather"
+  "root": "apps/weather"
 }

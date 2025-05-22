@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { OpenWeatherController } from './openweather.controller';
-import { OpenWeatherService } from './openweather.service';
+import { WeatherController } from './weather.controller';
+import { WeatherService } from './weather.service';
 import { PrismaService } from './prisma.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
@@ -13,7 +13,7 @@ import * as Joi from 'joi';
       }),
     }),
   ],
-  controllers: [OpenWeatherController],
-  providers: [OpenWeatherService, PrismaService],
+  controllers: [WeatherController],
+  providers: [WeatherService, PrismaService],
 })
-export class OpenWeatherModule {}
+export class WeatherModule {}

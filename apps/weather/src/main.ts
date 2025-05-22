@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { OpenWeatherModule } from './openweather.module';
+import { WeatherModule } from './weather.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(OpenWeatherModule);
+  const app = await NestFactory.create(WeatherModule);
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
