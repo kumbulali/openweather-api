@@ -8,15 +8,6 @@
     "tsConfigPath": "apps/openweather/tsconfig.app.json"
   },
   "projects": {
-    "auth": {
-      "type": "application",
-      "root": "apps/auth",
-      "entryFile": "main",
-      "sourceRoot": "apps/auth/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
-      }
-    },
     "common": {
       "type": "library",
       "root": "libs/common",
@@ -24,6 +15,15 @@
       "sourceRoot": "libs/common/src",
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
     },
     "openweather": {
