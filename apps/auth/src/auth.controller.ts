@@ -21,7 +21,7 @@ export class AuthController {
   @Get('me')
   @UseGuards(JwtAuthGuard)
   async me(@CurrentUser() user: User) {
-    return user;
+    return omit(user, ['password']);
   }
 
   @UseGuards(JwtAuthGuard)
