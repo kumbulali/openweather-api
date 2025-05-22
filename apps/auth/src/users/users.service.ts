@@ -7,6 +7,7 @@ import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { PrismaService } from '../prisma.service';
+import { RolesEnum } from '@app/common';
 
 @Injectable()
 export class UsersService {
@@ -14,10 +15,22 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     await this.validateCreateUserDto(createUserDto);
+
+    const roles = await this.prismaService.role.findMany({
+      where: {
+        name: {
+          in: createUserDto.roles?.length ? createUserDto.roles : undefined,
+        },
+      },
+    });
+
     return this.prismaService.user.create({
       data: {
         ...createUserDto,
         password: await bcrypt.hash(createUserDto.password, 10),
+        roles: {
+          connect: roles,
+        },
       },
     });
   }
