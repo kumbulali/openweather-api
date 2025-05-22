@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { UsersService } from './users/users.service';
-import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { omit } from 'lodash';
 import { TokenPayload } from './interfaces/token-payload.interface';
+import { User } from '.prisma/client';
 
 @Injectable()
 export class AuthService {
