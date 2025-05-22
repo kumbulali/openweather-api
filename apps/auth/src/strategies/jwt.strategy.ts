@@ -16,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         (request: any) => {
           return (
             request?.Authentication ||
-            request?.headers?.authorization.substring(7)
+            request?.headers?.authorization?.substring(7)
           );
         },
       ]),
