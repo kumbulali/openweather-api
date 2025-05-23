@@ -1,2 +1,2 @@
 export const AUTH_SERVICE = 'auth';
-export const OPENWEATHER_SERVICE = 'openweather';
+export const WEATHER_SERVICE = 'weather';
