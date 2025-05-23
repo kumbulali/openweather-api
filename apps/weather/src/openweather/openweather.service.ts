@@ -32,7 +32,7 @@ export class OpenweatherService {
       const response = await firstValueFrom(this.httpService.get(url));
       const weatherData = response.data;
 
-      await this.cache.set(cacheKey, JSON.stringify(weatherData), 600 * 1000);
+      await this.cache.set(cacheKey, JSON.stringify(weatherData));
 
       this.logger.log(`Fetched fresh data for ${city}`);
       return weatherData;
