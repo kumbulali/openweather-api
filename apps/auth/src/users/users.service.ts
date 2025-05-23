@@ -57,6 +57,9 @@ export class UsersService {
   async verifyUser(email: string, password: string) {
     const user = await this.prismaService.user.findFirst({
       where: { email },
+      include: {
+        roles: true,
+      },
     });
     if (!user) throw new UnauthorizedException('Credentials are not valid.');
 
@@ -71,6 +74,9 @@ export class UsersService {
     return this.prismaService.user.findUniqueOrThrow({
       where: {
         id: +getUserDto.id,
+      },
+      include: {
+        roles: true,
       },
     });
   }
