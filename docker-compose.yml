@@ -4,13 +4,30 @@ services:
       context: .
       dockerfile: ./apps/auth/Dockerfile
       target: development
-    command: sh -c "pnpm prisma migrate deploy --schema apps/auth/prisma/schema.prisma && pnpm prisma generate --schema apps/auth/prisma/schema.prisma && pnpm run start:dev auth"
+    command: sh -c "pnpm prisma migrate deploy --schema apps/auth/prisma/schema.prisma && pnpm prisma generate --schema apps/auth/prisma/schema.prisma && pnpm run start:debug auth"
     depends_on:
       - postgres
     env_file:
       - ./apps/auth/.env
     ports:
       - '3000:3000'
+      - '9229:9229'
+    volumes:
+      - .:/usr/src/app
+
+  weather:
+    build:
+      context: .
+      dockerfile: ./apps/weather/Dockerfile
+      target: development
+    command: sh -c "pnpm prisma migrate deploy --schema apps/weather/prisma/schema.prisma && pnpm prisma generate --schema apps/weather/prisma/schema.prisma && pnpm run start:debug weather"
+    depends_on:
+      - postgres
+    env_file:
+      - ./apps/weather/.env
+    ports:
+      - '3001:3001'
+      - '9230:9229'
     volumes:
       - .:/usr/src/app
   postgres:
@@ -19,21 +36,6 @@ services:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: postgres
-
-  weather:
-    build:
-      context: .
-      dockerfile: ./apps/weather/Dockerfile
-      target: development
-    command: sh -c "pnpm prisma migrate deploy --schema apps/weather/prisma/schema.prisma && pnpm prisma generate --schema apps/weather/prisma/schema.prisma && pnpm run start:dev weather"
-    depends_on:
-      - postgres
-    env_file:
-      - ./apps/weather/.env
-    ports:
-      - '3001:3001'
-    volumes:
-      - .:/usr/src/app
 
   rabbitmq:
     image: rabbitmq
