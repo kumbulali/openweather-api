@@ -10,11 +10,15 @@ datasource db {
 }
 
 model Weatherquery {
-  id        Int      @id @default(autoincrement())
-  path      String
-  method    String
-  timestamp DateTime
-  duration  Int
-  userId    Int
-  status    Int
+  id         Int      @id @default(autoincrement())
+  userId     String
+  location   String
+  temp       Float
+  conditions String
+  cached     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([location])
+  @@map("weather_queries")
 }

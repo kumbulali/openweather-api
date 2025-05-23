@@ -6,12 +6,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AUTH_SERVICE } from '@app/common';
+import { OpenweatherModule } from './openweather/openweather.module';
+import { OpenweatherService } from './openweather/openweather.service';
+import { HttpModule } from '@nestjs/axios';
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
         DATABASE_URL: Joi.string().required(),
+        REDIS_HOST: Joi.string().required(),
+        REDIS_PORT: Joi.number().default(6379),
       }),
     }),
     ClientsModule.registerAsync([
@@ -27,6 +32,7 @@ import { AUTH_SERVICE } from '@app/common';
         inject: [ConfigService],
       },
     ]),
+    OpenweatherModule,
   ],
   controllers: [WeatherController],
   providers: [WeatherService, PrismaService],

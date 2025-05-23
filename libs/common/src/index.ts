@@ -6,3 +6,4 @@ export * from './interceptors';
 export * from './dto';
 export * from './filters';
 export * from './guards';
+export * from './redis-cache';
