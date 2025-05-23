@@ -8,6 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { PrismaService } from '../prisma.service';
 import { RolesEnum } from '@app/common';
+import { omit } from 'lodash';
 
 @Injectable()
 export class UsersService {
@@ -19,12 +20,14 @@ export class UsersService {
     const roles = await this.prismaService.role.findMany({
       where: {
         name: {
-          in: createUserDto.roles?.length ? createUserDto.roles : undefined,
+          in: createUserDto.roles?.length
+            ? createUserDto.roles
+            : [RolesEnum.USER],
         },
       },
     });
 
-    return this.prismaService.user.create({
+    const createdUser = await this.prismaService.user.create({
       data: {
         ...createUserDto,
         password: await bcrypt.hash(createUserDto.password, 10),
@@ -32,7 +35,12 @@ export class UsersService {
           connect: roles,
         },
       },
+      include: {
+        roles: true,
+      },
     });
+
+    return omit(createdUser, ['password']);
   }
 
   private async validateCreateUserDto(createUserDto: CreateUserDto) {

@@ -30,7 +30,7 @@ export class JwtAuthGuard implements CanActivate {
     const authorizationToken = request.headers.authorization;
 
     if (!authorizationToken || !authorizationToken.startsWith('Bearer ')) {
-      throw new UnauthorizedException('messages.INVALID_AUTHORIZATION_HEADER');
+      throw new UnauthorizedException();
     }
 
     const jwt = authorizationToken.substring(7);

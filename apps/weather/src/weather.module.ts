@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { WeatherController } from './weather.controller';
 import { WeatherService } from './weather.service';
 import { PrismaService } from './prisma.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { AUTH_SERVICE } from '@app/common';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -12,6 +14,19 @@ import * as Joi from 'joi';
         DATABASE_URL: Joi.string().required(),
       }),
     }),
+    ClientsModule.registerAsync([
+      {
+        name: AUTH_SERVICE,
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.RMQ,
+          options: {
+            urls: [configService.getOrThrow<string>('RABBITMQ_URI')],
+            queue: AUTH_SERVICE,
+          },
+        }),
+        inject: [ConfigService],
+      },
+    ]),
   ],
   controllers: [WeatherController],
   providers: [WeatherService, PrismaService],
