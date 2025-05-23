@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { PrismaService } from '../prisma.service';
-import { AdminSeederService } from './seeders/admin.seeder';
+import { DefaultAdminUserSeederService } from './seeders/admin.seeder';
 import { RolesSeederService } from './seeders/roles.seeder';
 
 @Module({
@@ -11,7 +11,7 @@ import { RolesSeederService } from './seeders/roles.seeder';
     UsersService,
     PrismaService,
     RolesSeederService,
-    AdminSeederService,
+    DefaultAdminUserSeederService,
   ],
   exports: [UsersService],
 })

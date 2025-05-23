@@ -2,19 +2,21 @@ import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../../prisma.service';
-import { User } from '.prisma/client';
 import { RolesEnum } from '@app/common';
+import { RolesSeederService } from './roles.seeder';
 
 @Injectable()
-export class AdminSeederService implements OnApplicationBootstrap {
-  protected readonly logger = new Logger(AdminSeederService.name);
+export class DefaultAdminUserSeederService implements OnApplicationBootstrap {
+  protected readonly logger = new Logger(DefaultAdminUserSeederService.name);
 
   constructor(
     private readonly configService: ConfigService,
     private readonly prismaService: PrismaService,
+    private readonly rolesSeeder: RolesSeederService,
   ) {}
 
   async onApplicationBootstrap() {
+    await this.rolesSeeder.seedRoles();
     await this.seedAdminUser();
   }
 

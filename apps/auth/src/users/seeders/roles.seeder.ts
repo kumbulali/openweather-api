@@ -1,16 +1,18 @@
-import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Role, RolesEnum } from '@app/common';
 import { PrismaService } from '../../prisma.service';
 
 @Injectable()
-export class RolesSeederService implements OnApplicationBootstrap {
+export class RolesSeederService {
   protected readonly logger = new Logger(RolesSeederService.name);
+  private roles: Role[] = [];
 
   constructor(private readonly prismaService: PrismaService) {}
 
-  async onApplicationBootstrap() {
+  public async seedRoles(): Promise<Role[]> {
     await this.seedAdminRole();
     await this.seedUserRole();
+    return this.prismaService.role.findMany();
   }
 
   private async seedAdminRole() {
