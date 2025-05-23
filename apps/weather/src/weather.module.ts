@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { WeatherController } from './weather.controller';
 import { WeatherService } from './weather.service';
-import { PrismaService } from './prisma.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { AUTH_SERVICE } from '@app/common';
+import { AUTH_SERVICE, QUERY_TRACKER_SERVICE } from '@app/common';
 import { OpenweatherModule } from './openweather/openweather.module';
 @Module({
   imports: [
@@ -32,6 +31,6 @@ import { OpenweatherModule } from './openweather/openweather.module';
     OpenweatherModule,
   ],
   controllers: [WeatherController],
-  providers: [WeatherService, PrismaService],
+  providers: [WeatherService],
 })
 export class WeatherModule {}

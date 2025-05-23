@@ -8,6 +8,15 @@
     "tsConfigPath": "apps/weather/tsconfig.app.json"
   },
   "projects": {
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
     "common": {
       "type": "library",
       "root": "libs/common",
@@ -17,13 +26,13 @@
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
     },
-    "auth": {
+    "query-tracker": {
       "type": "application",
-      "root": "apps/auth",
+      "root": "apps/query-tracker",
       "entryFile": "main",
-      "sourceRoot": "apps/auth/src",
+      "sourceRoot": "apps/query-tracker/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
+        "tsConfigPath": "apps/query-tracker/tsconfig.app.json"
       }
     },
     "weather": {

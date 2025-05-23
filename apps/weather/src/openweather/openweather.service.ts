@@ -3,6 +3,8 @@ import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
+import { QUERY_TRACKER_SERVICE } from '@app/common';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class OpenweatherService {
@@ -14,13 +16,16 @@ export class OpenweatherService {
     @Inject(CACHE_MANAGER) private cache: Cache,
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
+    @Inject(QUERY_TRACKER_SERVICE)
+    private readonly queryTrackerService: ClientProxy,
   ) {
     this.apiKey = this.configService.getOrThrow('OPENWEATHER_API_KEY');
   }
 
-  async getWeatherByCity(city: string): Promise<any> {
+  async getWeatherByCity(city: string, userId: number): Promise<any> {
     const cacheKey = `weather_${city}`;
 
+    this.queryTrackerService.emit('weather_inquiry', { city });
     try {
       const cachedData = await this.cache.get<string>(cacheKey);
       if (cachedData) {

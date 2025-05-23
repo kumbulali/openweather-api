@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: ./apps/weather/Dockerfile
       target: development
-    command: sh -c "pnpm prisma migrate deploy --schema apps/weather/prisma/schema.prisma && pnpm prisma generate --schema apps/weather/prisma/schema.prisma && pnpm run start:debug weather"
+    command: sh -c "pnpm run start:debug weather"
     depends_on:
       - postgres
     env_file:
@@ -28,6 +28,21 @@ services:
     ports:
       - '3001:3001'
       - '9230:9229'
+    volumes:
+      - .:/usr/src/app
+
+  query-tracker:
+    build:
+      context: .
+      dockerfile: ./apps/query-tracker/Dockerfile
+      target: development
+    command: sh -c "pnpm prisma migrate deploy --schema apps/query-tracker/prisma/schema.prisma && pnpm prisma generate --schema apps/query-tracker/prisma/schema.prisma && pnpm run start:debug query-tracker"
+    depends_on:
+      - postgres
+    env_file:
+      - ./apps/query-tracker/.env
+    ports:
+      - '9231:9229'
     volumes:
       - .:/usr/src/app
   postgres:

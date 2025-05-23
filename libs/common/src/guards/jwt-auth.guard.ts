@@ -49,7 +49,7 @@ export class JwtAuthGuard implements CanActivate {
               res.roles?.map((role: Role) => role.name).includes(role),
             );
             if (!hasRole) {
-              throw new ForbiddenException('messages.PERMISSION_DENIED');
+              throw new ForbiddenException('Permission denied.');
             }
           }
           context.switchToHttp().getRequest().user = res;

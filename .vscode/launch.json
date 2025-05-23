@@ -22,6 +22,17 @@
       "sourceMaps": true,
       "localRoot": "${workspaceFolder}",
       "remoteRoot": "/usr/src/app"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Query Tracker Debug",
+      "address": "localhost",
+      "port": 9231,
+      "restart": true,
+      "sourceMaps": true,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/usr/src/app"
     }
   ]
 }

@@ -1,12 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Weatherquery` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE "Weatherquery";
-
 -- CreateTable
 CREATE TABLE "weather_queries" (
     "id" SERIAL NOT NULL,
