@@ -88,7 +88,7 @@ cd weather-api
 2. **Install pnpm for recursive installing**
 
 ```bash
-npm i -g pnpm
+npm i -g pnpm @nestjs/cli
 ```
 
 3. **Recursive package installing**
