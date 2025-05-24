@@ -29,6 +29,16 @@ This Weather API is built using **NestJS** technology in a **monorepo structure*
 
 ---
 
+### 🎯 Caching with Redis
+
+<p align="center">Sequence diagram for /weather?city= GET request.</p>
+
+<p align="center">
+  <img src="./assets/get_weather_sequence_diagram.png" alt="Sequence diagram for weather caching" />
+</p>
+
+---
+
 ## 🏗️ Architecture
 
 The API consists of **3 microservices**:
