@@ -8,8 +8,8 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_EXPIRATION } from '@app/common';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { LocalStategy } from './strategies/local.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { LocalStrategy } from './strategies/local.strategy';
 
 @Module({
   imports: [
@@ -33,7 +33,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
     AuthService,
     PrismaService,
     JwtStrategy,
-    LocalStategy,
+    LocalStrategy,
     JwtAuthGuard,
   ],
   exports: [JwtAuthGuard],

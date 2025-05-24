@@ -1,7 +1,6 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CurrentUser } from '@app/common';
-import { User } from '.prisma/client';
+import { CurrentUser, User } from '@app/common';
 import { omit } from 'lodash';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
