@@ -85,7 +85,19 @@ git clone <repository-url>
 cd weather-api
 ```
 
-2. **Start the application**
+2. **Install pnpm for recursive installing**
+
+```bash
+npm i -g pnpm
+```
+
+3. **Recursive package installing**
+
+```bash
+pnpm i -r
+```
+
+4. **Start the application**
 
 ```bash
 docker-compose up
