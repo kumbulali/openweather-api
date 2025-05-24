@@ -1,10 +1,11 @@
-import { Injectable, Logger, Inject } from '@nestjs/common';
+import { Injectable, Logger, Inject, HttpException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 import { handleRpcCall, QUERY_TRACKER_SERVICE } from '@app/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { WeatherResponse } from './interfaces/weather-response.interface';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class OpenweatherService {
@@ -22,7 +23,10 @@ export class OpenweatherService {
     this.apiKey = this.configService.getOrThrow('OPENWEATHER_API_KEY');
   }
 
-  async getWeatherByCity(city: string, userId: number): Promise<any> {
+  async getWeatherByCity(
+    city: string,
+    userId: number,
+  ): Promise<WeatherResponse> {
     const cacheKey = `weather_${city}`;
 
     try {
@@ -43,7 +47,7 @@ export class OpenweatherService {
       }
 
       const url = `${this.baseUrl}/weather?q=${city}&appid=${this.apiKey}&units=metric`;
-      const response = await handleRpcCall(this.httpService.get(url));
+      const response = await firstValueFrom(this.httpService.get(url));
       const weatherData: WeatherResponse = response.data;
 
       await this.cache.set(cacheKey, JSON.stringify(weatherData));
@@ -58,7 +62,10 @@ export class OpenweatherService {
       return weatherData;
     } catch (error) {
       this.logger.error(`Error getting weather for ${city}: ${error.message}`);
-      throw error;
+      throw new HttpException(
+        `Error occurred for city '${city}': ${error.response.data.message}`,
+        Number(error.response.data.cod),
+      );
     }
   }
 }
