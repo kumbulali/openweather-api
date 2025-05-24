@@ -20,5 +20,5 @@ model Weatherquery {
 
   @@index([userId])
   @@index([location])
-  @@map("weather_queries")
+  @@map("weatherquery")
 }
