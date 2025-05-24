@@ -1,40 +1,41 @@
-FROM node:alpine AS development
+FROM --platform=linux/amd64 node:23-alpine AS development
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY pnpm-lock.yaml ./
-COPY tsconfig.json tsconfig.json
-COPY nest-cli.json nest-cli.json
-COPY apps/query-tracker/prisma ./prisma
+RUN apk add --no-cache openssl python3 make g++
+
+COPY package.json pnpm-lock.yaml ./
+COPY tsconfig.json nest-cli.json ./
 
 RUN npm install -g pnpm
-
 RUN pnpm install
 
-RUN pnpm prisma generate
+COPY apps/query-tracker/prisma ./prisma/
+
+ENV PRISMA_CLIENT_ENGINE_TYPE=binary
+ENV PRISMA_CLI_QUERY_ENGINE_TYPE=binary
+
+RUN pnpm exec prisma generate
 
 COPY apps/query-tracker apps/query-tracker
 COPY libs libs
 
-RUN cd apps/query-tracker && pnpm install
-
 RUN pnpm run build query-tracker
 
-FROM node:alpine AS production
+FROM --platform=linux/amd64 node:23-alpine AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY pnpm-lock.yaml ./
-
-RUN npm install -g pnpm
-
-RUN pnpm install --prod
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && \
+	pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
+COPY --from=development /usr/src/app/node_modules/.prisma/client ./node_modules/.prisma/client
 
-CMD ["pnpm", "run", "start:prod", "dist/apps/query-tracker/main"]
+COPY --from=development /usr/src/app/node_modules/@prisma/engines ./node_modules/@prisma/engines
+
+CMD ["node", "dist/apps/query-tracker/main"]
