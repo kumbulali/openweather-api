@@ -1,9 +1,9 @@
 export interface WeatherQuery {
   id: number;
-  userId: string;
+  userId: number;
   location: string;
   temp: number;
-  conditions: string;
+  conditions: string[];
   cached: boolean;
   createdAt: Date;
 }

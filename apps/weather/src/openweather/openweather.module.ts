@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { OpenweatherService } from './openweather.service';
 import { HttpModule } from '@nestjs/axios';
-import { QUERY_TRACKER_SERVICE, RedisCacheModule } from '@app/common';
+import { RedisCacheModule, QUERY_TRACKER_SERVICE } from '@app/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
 

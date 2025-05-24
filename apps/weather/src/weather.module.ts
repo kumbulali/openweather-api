@@ -27,6 +27,17 @@ import { OpenweatherModule } from './openweather/openweather.module';
         }),
         inject: [ConfigService],
       },
+      {
+        name: QUERY_TRACKER_SERVICE,
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.RMQ,
+          options: {
+            urls: [configService.getOrThrow<string>('RABBITMQ_URI')],
+            queue: QUERY_TRACKER_SERVICE,
+          },
+        }),
+        inject: [ConfigService],
+      },
     ]),
     OpenweatherModule,
   ],

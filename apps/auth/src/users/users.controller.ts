@@ -13,6 +13,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { Roles, RolesEnum } from '@app/common';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { GetUserDto } from './dto/get-user.dto';
+import { MessagePattern, Payload, RpcException } from '@nestjs/microservices';
 
 @Controller('users')
 export class UsersController {
@@ -54,5 +55,18 @@ export class UsersController {
     @Body() updateUser: CreateUserDto,
   ) {
     return await this.usersService.updateUser(params.id, updateUser);
+  }
+
+  @MessagePattern('user_detail')
+  async getUserDetailById(@Payload() payload: GetUserDto) {
+    try {
+      return await this.usersService.getUser(payload);
+    } catch (error) {
+      throw new RpcException({
+        statusCode: 404,
+        message: 'User not found.',
+        error: 'NotFound',
+      });
+    }
   }
 }

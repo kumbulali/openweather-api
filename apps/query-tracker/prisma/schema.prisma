@@ -11,10 +11,10 @@ datasource db {
 
 model Weatherquery {
   id         Int      @id @default(autoincrement())
-  userId     String
+  userId     Int
   location   String
   temp       Float
-  conditions String
+  conditions String[]
   cached     Boolean  @default(false)
   createdAt  DateTime @default(now())
 
