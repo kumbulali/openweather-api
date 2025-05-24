@@ -341,42 +341,10 @@ weather-api/
 │   └── query-tracker/        # Query tracking microservice
 ├── libs/
 │   └── common/               # Shared libraries
-├── helm/                     # Kubernetes Helm charts
+├── k8s/                      # Kubernetes Helm charts
 ├── docker-compose.yml        # Local development setup
 └── README.md
 ```
-
-### Running Individual Services
-
-```bash
-# Install dependencies
-pnpm install
-
-# Development mode
-pnpm run start:dev auth      # Auth service
-pnpm run start:dev weather   # Weather service
-pnpm run start:dev query-tracker # Query tracker service
-
-# Production mode
-pnpm run start:prod auth
-pnpm run start:prod weather
-pnpm run start:prod query-tracker
-```
-
-### Testing
-
-```bash
-# Unit tests
-pnpm run test
-
-# End-to-end tests
-pnpm run test:e2e
-
-# Test coverage
-pnpm run test:cov
-```
-
----
 
 ## 🐳 Docker Deployment
 
@@ -407,6 +375,12 @@ helm upgrade weather-api ./helm/weather-api
 ```
 
 ---
+
+---
+
+## ☸️ CloudBuild CI/CD
+
+CloudBuild scripts are also attached on project structure. With this script Google Cloud Platform's CloudBuild feature can be used for automated CI/CD.
 
 ## 🏛️ Why Microservice Architecture?
 
@@ -452,22 +426,6 @@ Import the included Postman collection (`WeatherAPI.postman_collection.json`) to
    - `weather-uri`: `http://localhost:3001/weather`
 3. **Authenticate**: Use the login endpoint to get your JWT token
 4. **Test Endpoints**: All endpoints are pre-configured with sample requests
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is [MIT licensed](LICENSE).
 
 ---
 
