@@ -1,0 +1,906 @@
+{
+  "info": {
+    "_postman_id": "9b665e76-640c-40e7-89db-0ebc1759e05c",
+    "name": "Weather API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13895449"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let responseData = pm.response.json();",
+                  "pm.environment.set(\"auth-token\", responseData.data.token);",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{auth-uri}}/login",
+              "host": ["{{auth-uri}}"],
+              "path": ["login"]
+            }
+          },
+          "response": [
+            {
+              "name": "Login (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{auth-uri}}/login",
+                  "host": ["{{auth-uri}}"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "342"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"156-d7nBl0UggH+ad4pOHofjbjEp9zM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 09:51:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0ODA4MDMwNywiZXhwIjoxNzQ4MDgzOTA3fQ.sVu8u7y9azSjFtpC3AiE9uURx0fTPYhz9xet9LFEfYc\",\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"admin@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Admin\"\n                }\n            ]\n        }\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T09:51:47.552Z\",\n        \"path\": \"/auth/login\",\n        \"method\": \"POST\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login (User)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let responseData = pm.response.json();",
+                  "pm.environment.set(\"auth-token\", responseData.data.token);",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test1@example.com\",\n    \"password\": \"test123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{auth-uri}}/login",
+              "host": ["{{auth-uri}}"],
+              "path": ["login"]
+            }
+          },
+          "response": [
+            {
+              "name": "Login (User)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"test1@example.com\",\n    \"password\": \"test123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{auth-uri}}/login",
+                  "host": ["{{auth-uri}}"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "341"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"155-jeYf0+J2mc5/S5xWLLePa8wzd1I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 09:56:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc0ODA4MDU2MiwiZXhwIjoxNzQ4MDg0MTYyfQ.YFVRZ_tHPUD8T8h6HCK5i3z0as-fcyJG0UWGlbBEzu4\",\n        \"user\": {\n            \"id\": 3,\n            \"email\": \"test1@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        }\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T09:56:02.976Z\",\n        \"path\": \"/auth/login\",\n        \"method\": \"POST\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "My Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{auth-uri}}/me",
+              "host": ["{{auth-uri}}"],
+              "path": ["me"]
+            }
+          },
+          "response": [
+            {
+              "name": "My Info",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{auth-uri}}/me",
+                  "host": ["{{auth-uri}}"],
+                  "path": ["me"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "174"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ae-aIsA0ZvlgLnAcW6+bAdczu4UWHo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:20:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 3,\n        \"email\": \"test1@example.com\",\n        \"roles\": [\n            {\n                \"id\": 2,\n                \"name\": \"User\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:20:16.194Z\",\n        \"path\": \"/auth/me\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@example.com\",\n    \"roles\": [\"User\"], // OPTIONAL If null it assigns User role automatically.\n    \"password\": \"test123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{users-uri}}",
+              "host": ["{{users-uri}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Create User (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"test@example.com\",\n    \"roles\": [\"User\"], // OPTIONAL If null it assigns User role automatically.\n    \"password\": \"test123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{users-uri}}",
+                  "host": ["{{users-uri}}"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "165"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a5-29AHyPOsXvnhDDhBaKzSinTsWoM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:21:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 7,\n        \"email\": \"test@example.com\",\n        \"roles\": [\n            {\n                \"name\": \"User\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:21:06.090Z\",\n        \"path\": \"/users\",\n        \"method\": \"POST\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Users (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{users-uri}}",
+              "host": ["{{users-uri}}"]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Users (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{users-uri}}",
+                  "host": ["{{users-uri}}"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "647"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"287-UvYhPv8dc7A+zMWi4kGklu3aM5c\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:22:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"admin@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Admin\"\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"email\": \"updateduser4@gmail.com\",\n            \"roles\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"email\": \"test1@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"email\": \"test2@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        },\n        {\n            \"id\": 5,\n            \"email\": \"test3@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Admin\"\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        },\n        {\n            \"id\": 6,\n            \"email\": \"test4@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Admin\"\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        },\n        {\n            \"id\": 7,\n            \"email\": \"test@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:22:40.070Z\",\n        \"path\": \"/users\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get User By Id (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{users-uri}}/2",
+              "host": ["{{users-uri}}"],
+              "path": ["2"]
+            }
+          },
+          "response": [
+            {
+              "name": "Get User By Id (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{users-uri}}/2",
+                  "host": ["{{users-uri}}"],
+                  "path": ["2"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "179"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b3-nE6oBv+C18dJUj14wLd8ysgVvds\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:22:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 2,\n        \"email\": \"updateduser4@gmail.com\",\n        \"roles\": [\n            {\n                \"id\": 2,\n                \"name\": \"User\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:22:50.223Z\",\n        \"path\": \"/users/2\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update User By Id (Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    //\"email\": \"updateduser4@gmail.com\",\n    //\"password\": \"123123\",\n    \"roles\": [\"User\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{users-uri}}/2",
+              "host": ["{{users-uri}}"],
+              "path": ["2"]
+            }
+          },
+          "response": [
+            {
+              "name": "Update User By Id (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    //\"email\": \"updateduser4@gmail.com\",\n    //\"password\": \"123123\",\n    \"roles\": [\"User\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{users-uri}}/2",
+                  "host": ["{{users-uri}}"],
+                  "path": ["2"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "181"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b5-vz8ie2o9AjKj5suNpuVyiK8rmLU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:23:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 2,\n        \"email\": \"updateduser4@gmail.com\",\n        \"roles\": [\n            {\n                \"id\": 2,\n                \"name\": \"User\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:23:01.787Z\",\n        \"path\": \"/users/2\",\n        \"method\": \"PATCH\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete User By Id (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{users-uri}}/3",
+              "host": ["{{users-uri}}"],
+              "path": ["3"]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete User By Id (Admin)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{users-uri}}/3",
+                  "host": ["{{users-uri}}"],
+                  "path": ["3"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "116"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"74-O9HzRWdyvPmSYwXO4SXgaDiv61s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:23:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 3\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:23:10.832Z\",\n        \"path\": \"/users/3\",\n        \"method\": \"DELETE\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Weather",
+      "item": [
+        {
+          "name": "Weather Query",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{weather-uri}}?city=antalya",
+              "host": ["{{weather-uri}}"],
+              "query": [
+                {
+                  "key": "city",
+                  "value": "antalya"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Weather Query",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{weather-uri}}?city=antalya",
+                  "host": ["{{weather-uri}}"],
+                  "query": [
+                    {
+                      "key": "city",
+                      "value": "antalya"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "632"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"278-9S2pdWmk0DEagT+EUvZP8c+wh7Q\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:23:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"coord\": {\n            \"lon\": 30.7178,\n            \"lat\": 36.7741\n        },\n        \"weather\": [\n            {\n                \"id\": 803,\n                \"main\": \"Clouds\",\n                \"description\": \"broken clouds\",\n                \"icon\": \"04d\"\n            }\n        ],\n        \"base\": \"stations\",\n        \"main\": {\n            \"temp\": 34.33,\n            \"feels_like\": 32.78,\n            \"temp_min\": 34.22,\n            \"temp_max\": 34.33,\n            \"pressure\": 1009,\n            \"humidity\": 24,\n            \"sea_level\": 1009,\n            \"grnd_level\": 1000\n        },\n        \"visibility\": 10000,\n        \"wind\": {\n            \"speed\": 5.14,\n            \"deg\": 360\n        },\n        \"clouds\": {\n            \"all\": 75\n        },\n        \"dt\": 1748081477,\n        \"sys\": {\n            \"type\": 1,\n            \"id\": 6956,\n            \"country\": \"TR\",\n            \"sunrise\": 1748054614,\n            \"sunset\": 1748106281\n        },\n        \"timezone\": 10800,\n        \"id\": 323776,\n        \"name\": \"Antalya Province\",\n        \"cod\": 200\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:23:27.004Z\",\n        \"path\": \"/weather?city=antalya\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "My History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{weather-uri}}/history",
+              "host": ["{{weather-uri}}"],
+              "path": ["history"]
+            }
+          },
+          "response": [
+            {
+              "name": "My History",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{weather-uri}}/history",
+                  "host": ["{{weather-uri}}"],
+                  "path": ["history"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "491"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1eb-/5/QsjfnU3/vqhahVHbIVvYwa+w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:23:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"email\": \"admin@example.com\",\n            \"roles\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Admin\"\n                }\n            ]\n        },\n        \"queryHistory\": [\n            {\n                \"id\": 13,\n                \"userId\": 1,\n                \"location\": \"Serik\",\n                \"temp\": 34.03,\n                \"conditions\": [\n                    \"clear sky\"\n                ],\n                \"cached\": true,\n                \"createdAt\": \"2025-05-24T09:51:53.855Z\"\n            },\n            {\n                \"id\": 14,\n                \"userId\": 1,\n                \"location\": \"Antalya Province\",\n                \"temp\": 34.33,\n                \"conditions\": [\n                    \"broken clouds\"\n                ],\n                \"cached\": false,\n                \"createdAt\": \"2025-05-24T10:23:27.187Z\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:23:38.357Z\",\n        \"path\": \"/weather/history\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get User History (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{weather-uri}}/history/2",
+              "host": ["{{weather-uri}}"],
+              "path": ["history", "2"]
+            }
+          },
+          "response": [
+            {
+              "name": "Get User History (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{weather-uri}}/history/2",
+                  "host": ["{{weather-uri}}"],
+                  "path": ["history", "2"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "216"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d8-bmPyp/NXkJX0oQ2XG8tn359g5hw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:23:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"updateduser4@gmail.com\",\n            \"roles\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"User\"\n                }\n            ]\n        },\n        \"queryHistory\": []\n    },\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:23:49.478Z\",\n        \"path\": \"/weather/history/2\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All History (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{weather-uri}}/history/all",
+              "host": ["{{weather-uri}}"],
+              "path": ["history", "all"]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All History (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{weather-uri}}/history/all",
+                  "host": ["{{weather-uri}}"],
+                  "path": ["history", "all"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2133"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"855-5BcIYp28YZANCf0PyXf5+wXg2eA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 24 May 2025 10:23:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"userId\": 1,\n            \"history\": [\n                {\n                    \"id\": 14,\n                    \"userId\": 1,\n                    \"location\": \"Antalya Province\",\n                    \"temp\": 34.33,\n                    \"conditions\": [\n                        \"broken clouds\"\n                    ],\n                    \"cached\": false,\n                    \"createdAt\": \"2025-05-24T10:23:27.187Z\"\n                },\n                {\n                    \"id\": 13,\n                    \"userId\": 1,\n                    \"location\": \"Serik\",\n                    \"temp\": 34.03,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T09:51:53.855Z\"\n                }\n            ]\n        },\n        {\n            \"userId\": 3,\n            \"history\": [\n                {\n                    \"id\": 12,\n                    \"userId\": 3,\n                    \"location\": \"Serik\",\n                    \"temp\": 34.03,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": false,\n                    \"createdAt\": \"2025-05-24T09:51:20.586Z\"\n                },\n                {\n                    \"id\": 11,\n                    \"userId\": 3,\n                    \"location\": \"Manavgat\",\n                    \"temp\": 27.45,\n                    \"conditions\": [\n                        \"few clouds\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T09:51:16.783Z\"\n                },\n                {\n                    \"id\": 10,\n                    \"userId\": 3,\n                    \"location\": \"Manavgat\",\n                    \"temp\": 27.45,\n                    \"conditions\": [\n                        \"few clouds\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T09:51:16.074Z\"\n                }\n            ]\n        },\n        {\n            \"userId\": 4,\n            \"history\": [\n                {\n                    \"id\": 9,\n                    \"userId\": 4,\n                    \"location\": \"Manavgat\",\n                    \"temp\": 27.45,\n                    \"conditions\": [\n                        \"few clouds\"\n                    ],\n                    \"cached\": false,\n                    \"createdAt\": \"2025-05-24T09:50:48.485Z\"\n                },\n                {\n                    \"id\": 8,\n                    \"userId\": 4,\n                    \"location\": \"Şanlıurfa Province\",\n                    \"temp\": 32.93,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": false,\n                    \"createdAt\": \"2025-05-24T09:41:29.754Z\"\n                },\n                {\n                    \"id\": 7,\n                    \"userId\": 4,\n                    \"location\": \"Diyarbakır\",\n                    \"temp\": 32.77,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": false,\n                    \"createdAt\": \"2025-05-24T09:40:28.046Z\"\n                },\n                {\n                    \"id\": 6,\n                    \"userId\": 4,\n                    \"location\": \"Antalya Province\",\n                    \"temp\": 31.33,\n                    \"conditions\": [\n                        \"scattered clouds\"\n                    ],\n                    \"cached\": false,\n                    \"createdAt\": \"2025-05-24T06:58:33.423Z\"\n                },\n                {\n                    \"id\": 5,\n                    \"userId\": 4,\n                    \"location\": \"Istanbul\",\n                    \"temp\": 21.51,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T06:57:40.818Z\"\n                },\n                {\n                    \"id\": 4,\n                    \"userId\": 4,\n                    \"location\": \"Istanbul\",\n                    \"temp\": 21.51,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T06:57:40.157Z\"\n                },\n                {\n                    \"id\": 3,\n                    \"userId\": 4,\n                    \"location\": \"Istanbul\",\n                    \"temp\": 21.51,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T06:57:39.590Z\"\n                },\n                {\n                    \"id\": 2,\n                    \"userId\": 4,\n                    \"location\": \"Istanbul\",\n                    \"temp\": 21.51,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T06:57:38.949Z\"\n                },\n                {\n                    \"id\": 1,\n                    \"userId\": 4,\n                    \"location\": \"Istanbul\",\n                    \"temp\": 21.51,\n                    \"conditions\": [\n                        \"clear sky\"\n                    ],\n                    \"cached\": true,\n                    \"createdAt\": \"2025-05-24T06:57:16.579Z\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"timestamp\": \"2025-05-24T10:23:59.772Z\",\n        \"path\": \"/weather/history/all\",\n        \"method\": \"GET\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth-token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          "pm.request.headers.add({",
+          "    key: 'Accept-Language',",
+          "    value: 'tr',",
+          "});"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ]
+}
