@@ -82,7 +82,7 @@ The API consists of **3 microservices**:
 
 ```bash
 git clone <repository-url>
-cd weather-api
+cd openweather-api
 ```
 
 2. **Install pnpm for recursive installing**
