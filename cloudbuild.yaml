@@ -1,0 +1,44 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  #Auth
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        '<WEATHER_REGISTRY>/wallets/production',
+        '-f',
+        'apps/wallets/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '<WEATHER_REGISTRY>/wallets/production']
+
+  #Weather
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        '<WEATHER_REGISTRY>/transactions/production',
+        '-f',
+        'apps/transactions/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '<WEATHER_REGISTRY>/transactions/production']
+
+  #Query Tracker
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        '<WEATHER_REGISTRY>/cards/production',
+        '-f',
+        'apps/cards/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '<WEATHER_REGISTRY>/cards/production']
