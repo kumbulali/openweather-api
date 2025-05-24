@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: query-tracker
+  name: query-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: query-tracker
+  template:
+    metadata:
+      labels:
+        app: query-tracker
+    spec:
+      containers:
+        - image: '<WEATHER_REGISTRY>/query-tracker/production:latest'
+          imagePullPolicy: Always
+          name: query-tracker
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db
+                  key: connectionString
+            - name: RABBITMQ_URI
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq
+                  key: connectionString

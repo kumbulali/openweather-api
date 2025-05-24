@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weather-backend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: 'auth'
+                port:
+                  number: 3000
+          - path: /users
+            pathType: Prefix
+            backend:
+              service:
+                name: 'auth'
+                port:
+                  number: 3000
+          - path: /weather
+            pathType: Prefix
+            backend:
+              service:
+                name: 'weather'
+                port:
+                  number: 3001
